@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] private float jumpForce = 8;
     [SerializeField] public float playerSpeed = 2f;
@@ -11,8 +10,13 @@ public class PlayerMovement : MonoBehaviour
     private float input;
     [SerializeField] private Rigidbody2D rb;
 
+    public GameObject groundRayObject;
+    bool jumpOn;
+
+    [SerializeField] private LayerMask groundLayer;
     void Start()
     {
+        jumpOn = false;
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -20,42 +24,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //move left or right
-        MovePlayer();
-
         //jumping
         if (Input.GetKeyDown(KeyCode.Space)) //is grounded so that player can only jump again once theyve hit the ground
         {
             Debug.Log("Jump");
             Jump();
-
         }
 
     }
 
-    public void MovePlayer()
-    {
-        input = Input.GetAxis("Horizontal");
-    }
-
     void FixedUpdate()
     {
+        input = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(input * playerSpeed, rb.linearVelocity.y);
+        IsGrounded();
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Pipe"))
-    //    {
-    //        Debug.Log("Player Hit");
-    //    }
-
-    //    if (collision.CompareTag("Goal"))
-    //    {
-    //        Debug.Log("Yippeee");
-    //    }
-
-    //}
 
     public void StartGame() 
     {
@@ -65,16 +48,33 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        if(!jumpOn)
+        {
+            return;
+        }
+
+        jumpOn = false;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
     }
 
-    //stop double jumping
-    //private bool GetIsGrounded()
-    //{
-    //    //check for ground or interactable so no double jumping on anything
-    //    bool grounded = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, LayerMask.GetMask("Ground") | LayerMask.GetMask("Interactable"));
+    //stop double jumping, checking if touched the ground again so that player can jump again
+    private void IsGrounded()
+    {
+        //check for ground or interactable so no double jumping on anything
+        RaycastHit2D hitGround = Physics2D.Raycast(groundRayObject.transform.position, Vector2.down, 0.5f,groundLayer);
+        //Debug.DrawRay(groundRayObject.transform.position, Vector2.down * 0.5f, Color.red); //draw ray not needed rn
+
+        if (hitGround.collider !=null)
+        {
+                //Debug.Log("Hit " + hitGround.collider.name);
+                jumpOn = true;
+            }
+            else
+            {
+                //Debug.Log("Nothing hit");
+                jumpOn = false;
+            }
         
-    //    return grounded;
-    
-    //}
+    }
 }
