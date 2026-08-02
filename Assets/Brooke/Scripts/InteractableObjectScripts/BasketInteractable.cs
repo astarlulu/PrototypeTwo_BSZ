@@ -2,27 +2,25 @@ using UnityEngine;
 
 public class BasketInteractable : MonoBehaviour, IInteractionTrigger
 {
+    [SerializeField] private string HideText = "[E] to hide";
+    [SerializeField] private string LeaveText = "[E] to leave";
+    //[SerializeField] private Animator Animator;
 
-    [SerializeField] private string InteractText = "[E] to hide";
+    private bool isHiding;
 
+    //returns the string
+    public string InteractionText
+    {
+        get
+        {
+            return isHiding ? LeaveText : HideText;
+        }
+    }
 
     public void Interact()
     {
+        isHiding = !isHiding;
+        //Animator.SetBool("isHiding", isHiding);
         Debug.Log("Hiding in basket");
-    }
-
-    //returns the string
-    public string InteractionText { get { return InteractText; } }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

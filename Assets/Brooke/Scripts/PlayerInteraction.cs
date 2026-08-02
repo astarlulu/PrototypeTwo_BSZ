@@ -8,12 +8,12 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private TMP_Text InteractionText;
 
-    private Camera mainCamera;
+    //private Camera mainCamera;
 
-    private void Start()
-    {
-        mainCamera = GetComponent<Camera>();
-    }
+    //private void Start()
+    //{
+    //    mainCamera = GetComponent<Camera>();
+    //}
 
     private void Update()
     {
@@ -27,13 +27,14 @@ public class PlayerInteraction : MonoBehaviour
         //RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, Range, LayerMask);
         //RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, Range, LayerMask);
 
-        if(!hitHidingSpot.TryGetComponent(out IInteractionTrigger interaction))
+        if(hitHidingSpot == null || !hitHidingSpot.TryGetComponent(out IInteractionTrigger interaction))
         {
             InteractionText.text = "";
             return;
         }
 
         InteractionText.text = interaction.InteractionText;
+
         if (Input.GetKeyDown(KeyCode.E))
             interaction.Interact();
 
