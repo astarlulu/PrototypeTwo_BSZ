@@ -24,25 +24,25 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    [System.Obsolete]
+
     void Update()
     {
         Vector2 point = currentPoint.position - transform.position;
         if (currentPoint == PointB.transform)
         {
-            rb.velocity = new Vector2(speed, 0);
+            rb.linearVelocity = new Vector2(speed, 0);
         }
         else
         {
-            rb.velocity = new Vector2(-speed, 0);
+            rb.linearVelocity = new Vector2(-speed, 0);
         }
 
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PointB.transform)
+        if (Vector2.Distance(transform.position, currentPoint.position) < 2f && currentPoint == PointB.transform)
         {
             flip();
             currentPoint = PointA.transform;
         }
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PointA.transform)
+        if (Vector2.Distance(transform.position, currentPoint.position) < 2f && currentPoint == PointA.transform)
         {
             flip();
             currentPoint = PointB.transform;
