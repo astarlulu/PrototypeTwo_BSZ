@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     //private Animator anim;
     private Transform currentPoint;
     public float speed;
+    public Timer timer;
 
 
 
@@ -26,6 +27,16 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
 
     void Update()
+    {
+        if (timer.timeRemaining != 0)
+        {
+            return;
+        }
+
+        EnemyMove();
+    }
+
+    public void EnemyMove()
     {
         Vector2 point = currentPoint.position - transform.position;
         if (currentPoint == PointB.transform)
