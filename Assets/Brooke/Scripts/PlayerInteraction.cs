@@ -8,6 +8,9 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private TMP_Text InteractionText;
 
+    // sienna for animation
+    [SerializeField] private Animator anim;
+
     //private Camera mainCamera;
 
     //private void Start()
@@ -30,7 +33,12 @@ public class PlayerInteraction : MonoBehaviour
         if(hitHidingSpot == null || !hitHidingSpot.TryGetComponent(out IInteractionTrigger interaction))
         {
             InteractionText.text = "";
+            anim.SetBool("Interact", false);
             return;
+        }
+        else
+        {
+            anim.SetBool("Interact", true);
         }
 
         InteractionText.text = interaction.InteractionText;
