@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -13,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     public Timer timer;
 
-
+    bool stop = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +34,17 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        EnemyMove();
+        if (!stop)
+        {
+            EnemyMove();
+        }
+        
+
+        if (currentPoint.position == transform.position)
+        {
+            Debug.Log("PointA");
+        }
+
     }
 
     public void EnemyMove()
@@ -51,14 +62,17 @@ public class EnemyMovement : MonoBehaviour
         if (Vector2.Distance(transform.position, currentPoint.position) < 2f && currentPoint == PointB.transform)
         {
             flip();
+            
             currentPoint = PointA.transform;
         }
         if (Vector2.Distance(transform.position, currentPoint.position) < 2f && currentPoint == PointA.transform)
         {
             flip();
+            StartCoroutine(stopAndWait(3f));
             currentPoint = PointB.transform;
         }
     }
+
 
     private void flip() //flip sprite when turning 
     {
@@ -72,6 +86,17 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.DrawWireSphere(PointA.transform.position, 0.5f);
         Gizmos.DrawWireSphere(PointB.transform.position, 0.5f);
         Gizmos.DrawLine(PointA.transform.position, PointB.transform.position);
+    }
+
+    private IEnumerator stopAndWait(float seconds)
+    {
+        
+        stop = true;
+        
+        yield return new WaitForSeconds(seconds);
+        Debug.Log("WAITTT");
+
+        stop = false;
     }
 }
 
