@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     public GameObject groundRayObject;
+    public GameObject aboveRayObject;
     bool jumpOn;
 
     [SerializeField] private LayerMask groundLayer;
@@ -38,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         input = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(input * playerSpeed, rb.linearVelocity.y);
         IsGrounded();
+        IsAbove();
+
     }
 
     public void StartGame() 
@@ -76,5 +81,34 @@ public class PlayerMovement : MonoBehaviour
                 jumpOn = false;
             }
         
+    }
+    private void IsAbove()
+    {
+        RaycastHit2D hitAbove = Physics2D.Raycast(aboveRayObject.transform.position, Vector2.up, 0.5f, groundLayer);
+        Debug.DrawRay(aboveRayObject.transform.position, Vector2.up * 0.5f, Color.red); //draw ray not needed rn
+
+        if (hitAbove.collider != null)
+        {
+            //go trhogh the ground collider if the above collider hits it
+            //if (hitAbove.collider LayerMask)
+            //{
+
+            //}
+
+        }
+
+    }
+
+    //time for how long its turned off for
+    private IEnumerator ResetLayerMaskRoutine()
+    {
+        // Turn off interaction (disable collider temporarily)
+        //myCollider.enabled = false;
+
+        // Wait for 0.5 seconds
+        yield return new WaitForSeconds(0.5f);
+
+        // Turn back on
+        //myCollider.enabled = true;
     }
 }
