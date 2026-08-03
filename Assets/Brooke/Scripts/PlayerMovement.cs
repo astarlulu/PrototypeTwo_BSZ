@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     // sienna for animation
     [SerializeField] private Animator anim;
-
+    private int facingDirection = 1; // 1 for right, -1 for left
 
     [SerializeField] private LayerMask groundLayer;
 
@@ -57,11 +57,25 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         input = Input.GetAxis("Horizontal");
+
+        if(input > .1f && facingDirection < 0 || input < -.1f && facingDirection > 0)
+        {
+            Flip();
+        }
+
         rb.linearVelocity = new Vector2(input * playerSpeed, rb.linearVelocity.y);
 
         IsGrounded();
         IsAbove();
 
+    }
+    void Flip()
+    {
+
+        facingDirection *= -1;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     public void StartGame() 
