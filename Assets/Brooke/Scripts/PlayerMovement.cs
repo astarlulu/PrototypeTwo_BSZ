@@ -17,10 +17,16 @@ public class PlayerMovement : MonoBehaviour
     bool jumpOn;
 
     [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] private Collider2D playerCollider;
+
+    private bool passingThrough = false;
+
     void Start()
     {
         jumpOn = false;
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<Collider2D>();
 
     }
 
@@ -84,31 +90,33 @@ public class PlayerMovement : MonoBehaviour
     }
     private void IsAbove()
     {
+        if (passingThrough)
+            return;
+
         RaycastHit2D hitAbove = Physics2D.Raycast(aboveRayObject.transform.position, Vector2.up, 0.5f, groundLayer);
-        Debug.DrawRay(aboveRayObject.transform.position, Vector2.up * 0.5f, Color.red); //draw ray not needed rn
+        //Debug.DrawRay(aboveRayObject.transform.position, Vector2.up * 0.5f, Color.red);
 
         if (hitAbove.collider != null)
         {
-            //go trhogh the ground collider if the above collider hits it
-            //if (hitAbove.collider LayerMask)
-            //{
-
-            //}
-
+            StartCoroutine(ResetLayerMaskRoutine(hitAbove.collider));
         }
 
     }
 
-    //time for how long its turned off for
-    private IEnumerator ResetLayerMaskRoutine()
+    //restting the collider back after finish passing though that colldier
+    private IEnumerator ResetLayerMaskRoutine(Collider2D platformCollider)
     {
-        // Turn off interaction (disable collider temporarily)
-        //myCollider.enabled = false;
+        passingThrough = true;
 
-        // Wait for 0.5 seconds
-        yield return new WaitForSeconds(0.5f);
+        // ignoring collision between player and this platform
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, true);
 
-        // Turn back on
-        //myCollider.enabled = true;
+        // wait long enough for player to pass through
+        yield return new WaitForSeconds(0.25f);
+
+        // turn collision back on
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+
+        passingThrough = false;
     }
 }
