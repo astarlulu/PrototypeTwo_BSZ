@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject aboveRayObject;
     bool jumpOn;
 
+    // sienna for animation
+    [SerializeField] private Animator anim;
+
+
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private Collider2D playerCollider;
@@ -40,12 +44,21 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
+        if (rb.linearVelocity.x != 0 && jumpOn)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
     }
 
     void FixedUpdate()
     {
         input = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(input * playerSpeed, rb.linearVelocity.y);
+
         IsGrounded();
         IsAbove();
 
@@ -64,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        anim.SetTrigger("Jump");
         jumpOn = false;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
