@@ -6,20 +6,21 @@ public class TableInteractable : MonoBehaviour, IInteractionTrigger
     [SerializeField] private string LeaveText = "[E] to leave";
     //[SerializeField] private Animator Animator;
 
-    private bool isHiding;
+    //private bool isHiding;
+    [SerializeField] private HidingSpot hidingSpot;
 
     //returns the string
     public string InteractionText
     {
         get
         {
-            return isHiding ? LeaveText : HideText;
+            return hidingSpot.isHiding ? LeaveText : HideText;
         }
     }
 
     public void Interact()
     {
-        isHiding = !isHiding;
+        hidingSpot.isHiding = !hidingSpot.isHiding;
         //Animator.SetBool("isHiding", isHiding);
         Debug.Log("Hiding under table");
     }

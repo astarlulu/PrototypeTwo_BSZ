@@ -11,8 +11,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 
 {
-
-
+    [SerializeField] private Enemy enemyScript;
 
     public GameObject PointA;
 
@@ -20,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    //private Animator anim; 
+    [SerializeField] private Animator anim; 
 
     private Transform currentPoint;
 
@@ -31,14 +30,12 @@ public class EnemyMovement : MonoBehaviour
 
 
     bool stop = false;
-
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created 
 
     void Start()
 
     {
+        flip();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -61,26 +58,13 @@ public class EnemyMovement : MonoBehaviour
     {
 
         if (timer.timeRemaining != 0)
-
         {
-
             return;
-
         }
-
-
-
         if (!stop)
-
         {
-
             EnemyMove();
-
         }
-
-
-
-
 
         if (currentPoint.position == transform.position)
 
@@ -109,33 +93,21 @@ public class EnemyMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(speed, 0);
 
         }
-
         else
-
         {
 
             rb.linearVelocity = new Vector2(-speed, 0);
-
         }
-
-
-
-        if (Vector2.Distance(transform.position, currentPoint.position) < 2f && currentPoint == PointB.transform)
+        if (Vector2.Distance(transform.position, currentPoint.position) < 3f && currentPoint == PointB.transform)
 
         {
-
             flip();
-
-
-
             currentPoint = PointA.transform;
-
         }
 
-        if (Vector2.Distance(transform.position, currentPoint.position) < 2f && currentPoint == PointA.transform)
+        if (Vector2.Distance(transform.position, currentPoint.position) < 3f && currentPoint == PointA.transform)
 
         {
-
             flip();
 
             StartCoroutine(stopAndWait(3f));
@@ -143,12 +115,8 @@ public class EnemyMovement : MonoBehaviour
             currentPoint = PointB.transform;
 
         }
-
+        anim.SetBool("Walking", true);
     }
-
-
-
-
 
     private void flip() //flip sprite when turning  
 
@@ -182,17 +150,20 @@ public class EnemyMovement : MonoBehaviour
 
     {
 
-
+        anim.SetBool("Walking", false);
 
         stop = true;
 
-
+        enemyScript.scanSprite.SetActive(true);
+        enemyScript.Scan();
 
         yield return new WaitForSeconds(seconds);
 
         Debug.Log("WAITTT");
+        enemyScript.scanSprite.SetActive(false);
 
 
+        anim.SetBool("Walking", true);
 
         stop = false;
 
