@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float input;
     [SerializeField] private Rigidbody2D rb;
+    //gets sprite renderer for flipping on animation sprite not player
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public GameObject groundRayObject;
     public GameObject aboveRayObject;
@@ -71,11 +73,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void Flip()
     {
-
         facingDirection *= -1;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+        spriteRenderer.flipX = facingDirection < 0;
+        //facingDirection *= -1;
+        //Vector3 scale = transform.localScale;
+        //scale.x *= -1;
+        //transform.localScale = scale;
     }
 
     public void StartGame() 

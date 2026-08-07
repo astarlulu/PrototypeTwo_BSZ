@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &187142226
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -851,6 +852,7 @@ GameObject:
   - component: {fileID: 295061135}
   - component: {fileID: 295061137}
   - component: {fileID: 295061136}
+  - component: {fileID: 295061138}
   m_Layer: 0
   m_Name: Nobebe
   m_TagString: Untagged
@@ -866,12 +868,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295061134}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.89, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -19.186302, y: -1.19, z: 0}
+  m_LocalScale: {x: 1.5127, y: 1.5127, z: 1.5127}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2094528368}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &295061136
 MonoBehaviour:
@@ -947,6 +949,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &295061138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295061134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5695c4b04cc5e479c7b589aafd2b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideableCharacters
+  hideOrder: 1
 --- !u!1 &318945274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,12 +1744,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 495276145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65311c0b0f7d6894695d723b631d74ac, type: 3}
+  m_Script: {fileID: 11500000, guid: fd611cd0ae4a660488eb41caec48822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosetInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
   hidingSpot: {fileID: 495276150}
+  hidingManager: {fileID: 1142134698}
 --- !u!61 &495276149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2045,6 +2061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &594853634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2388,6 +2405,11 @@ Transform:
   - {fileID: 965348065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &722251011 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2621603359216652730, guid: 8c107c4560705004b99194fa89f1c74f, type: 3}
+  m_PrefabInstance: {fileID: 201854327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &756922562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,6 +2853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &908481279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3138,6 +3161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &943197505
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3836,6 +3860,54 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.0106425, y: 0.10837436}
   m_EdgeRadius: 0
+--- !u!1 &1142134697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1142134699}
+  - component: {fileID: 1142134698}
+  m_Layer: 0
+  m_Name: HidingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1142134698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142134697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa863fe97e4a0f44380e42e91387a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HidingManager
+  characters:
+  - {fileID: 295061138}
+  - {fileID: 1752914880}
+  - {fileID: 2094528371}
+--- !u!4 &1142134699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142134697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.78607, y: -4.34424, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1193000775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,6 +4042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &1221736524
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4086,7 +4159,7 @@ GameObject:
   - component: {fileID: 1261995608}
   - component: {fileID: 1261995609}
   - component: {fileID: 1261995611}
-  - component: {fileID: 1261995610}
+  - component: {fileID: 1261995613}
   - component: {fileID: 1261995612}
   m_Layer: 3
   m_Name: Boxes
@@ -4159,7 +4232,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3708910047404972857, guid: 2110c4579418b374ea3fb4502379fd85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4171,21 +4244,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1261995610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261995607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04dd68f0281e86f45863f81c50ea66fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TableInteractable
-  HideText: '[E] to hide'
-  LeaveText: '[E] to leave'
-  hidingSpot: {fileID: 1261995612}
 --- !u!61 &1261995611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4220,7 +4278,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.9366071, y: -0.5838828}
+  m_Offset: {x: 1.9366071, y: -0.8923042}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4230,7 +4288,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.856216, y: 3.0322342}
+  m_Size: {x: 4.856216, y: 2.4153914}
   m_EdgeRadius: 0
 --- !u!114 &1261995612
 MonoBehaviour:
@@ -4246,6 +4304,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HidingSpot
   hidingSpotType: 2
   isHiding: 0
+--- !u!114 &1261995613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261995607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd611cd0ae4a660488eb41caec48822a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClosetInteractable
+  HideText: '[E] to hide'
+  LeaveText: '[E] to leave'
+  hidingSpot: {fileID: 1261995612}
+  hidingManager: {fileID: 1142134698}
 --- !u!1 &1270570437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4294,6 +4368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &1270570440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4581,12 +4656,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312642266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65311c0b0f7d6894695d723b631d74ac, type: 3}
+  m_Script: {fileID: 11500000, guid: fd611cd0ae4a660488eb41caec48822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosetInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
   hidingSpot: {fileID: 1312642271}
+  hidingManager: {fileID: 1142134698}
 --- !u!61 &1312642270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4695,6 +4771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &1315564497
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6032,6 +6109,7 @@ GameObject:
   - component: {fileID: 1752914877}
   - component: {fileID: 1752914879}
   - component: {fileID: 1752914878}
+  - component: {fileID: 1752914880}
   m_Layer: 0
   m_Name: Gumi
   m_TagString: Untagged
@@ -6047,12 +6125,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752914876}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.33, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18.339191, y: -1.19, z: 0}
+  m_LocalScale: {x: 1.5127, y: 1.5127, z: 1.5127}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2094528368}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1752914878
 MonoBehaviour:
@@ -6128,6 +6206,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1752914880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752914876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5695c4b04cc5e479c7b589aafd2b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideableCharacters
+  hideOrder: 2
 --- !u!1 &1891966364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6211,7 +6302,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1896807718633725718, guid: 2110c4579418b374ea3fb4502379fd85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6232,12 +6323,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891966364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65311c0b0f7d6894695d723b631d74ac, type: 3}
+  m_Script: {fileID: 11500000, guid: fd611cd0ae4a660488eb41caec48822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClosetInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
   hidingSpot: {fileID: 1891966369}
+  hidingManager: {fileID: 1142134698}
 --- !u!61 &1891966368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6917,6 +7009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasketInteractable
   HideText: '[E] to hide'
   LeaveText: '[E] to leave'
+  isHiding: 0
 --- !u!61 &2059260308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7036,6 +7129,7 @@ GameObject:
   - component: {fileID: 2094528365}
   - component: {fileID: 2094528364}
   - component: {fileID: 2094528370}
+  - component: {fileID: 2094528371}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7058,6 +7152,7 @@ MonoBehaviour:
   jumpForce: 8.5
   playerSpeed: 3.5
   rb: {fileID: 2094528365}
+  spriteRenderer: {fileID: 722251011}
   groundRayObject: {fileID: 834343247}
   aboveRayObject: {fileID: 53631774}
   anim: {fileID: 201854328}
@@ -7168,8 +7263,6 @@ Transform:
   - {fileID: 834343248}
   - {fileID: 53631775}
   - {fileID: 2094601724}
-  - {fileID: 1752914877}
-  - {fileID: 295061135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2094528369
@@ -7236,6 +7329,19 @@ MonoBehaviour:
     m_Bits: 8
   InteractionText: {fileID: 2094601725}
   anim: {fileID: 201854328}
+--- !u!114 &2094528371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094528363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5695c4b04cc5e479c7b589aafd2b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideableCharacters
+  hideOrder: 3
 --- !u!1 &2094601723
 GameObject:
   m_ObjectHideFlags: 0
@@ -7578,6 +7684,8 @@ SceneRoots:
   - {fileID: 492693930}
   - {fileID: 818687452}
   - {fileID: 2094528368}
+  - {fileID: 1752914877}
+  - {fileID: 295061135}
   - {fileID: 53083041}
   - {fileID: 107030121}
   - {fileID: 1321704758}
@@ -7585,3 +7693,4 @@ SceneRoots:
   - {fileID: 574752453}
   - {fileID: 859930953}
   - {fileID: 191442520}
+  - {fileID: 1142134699}
