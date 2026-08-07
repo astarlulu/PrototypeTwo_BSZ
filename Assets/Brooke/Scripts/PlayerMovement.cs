@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     //gets sprite renderer for flipping on animation sprite not player
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    //megumi
+    [SerializeField ] public PlayerFollower megumi;
+    //nobibi
+    [SerializeField] public PlayerFollower nobibi;
+
     public GameObject groundRayObject;
     public GameObject aboveRayObject;
     bool jumpOn;
@@ -80,6 +85,9 @@ public class PlayerMovement : MonoBehaviour
         //Vector3 scale = transform.localScale;
         //scale.x *= -1;
         //transform.localScale = scale;
+
+        megumi.FlipFollower();
+        nobibi.FlipFollower();
     }
 
     public void StartGame() 
