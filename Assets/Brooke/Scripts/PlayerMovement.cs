@@ -5,11 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [Header("Player Controls")]
     [SerializeField] private float jumpForce = 8;
     [SerializeField] public float playerSpeed = 2f;
 
     private float input;
+    [Header("Player References")]
     [SerializeField] private Rigidbody2D rb;
     //gets sprite renderer for flipping on animation sprite not player
     [SerializeField] private SpriteRenderer spriteRenderer;
