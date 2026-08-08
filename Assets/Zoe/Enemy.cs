@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyView currentView;
     [SerializeField] public GameObject scanSprite;
+    
     public enum EnemyView
     {
         Top,
