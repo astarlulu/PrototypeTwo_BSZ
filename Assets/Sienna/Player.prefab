@@ -187,7 +187,6 @@ MonoBehaviour:
   jumpForce: 8.5
   playerSpeed: 3.5
   rb: {fileID: 224846180645611049}
-  spriteRenderer: {fileID: 0}
   groundRayObject: {fileID: 6403251584615243829}
   aboveRayObject: {fileID: 8021962110606744222}
   anim: {fileID: 5022604060160991049}
