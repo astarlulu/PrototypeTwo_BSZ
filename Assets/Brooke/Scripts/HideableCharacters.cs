@@ -9,8 +9,10 @@ public class HideableCharacters : MonoBehaviour
     //steps
     public float HideOrder => hideOrder;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private PlayerFollower follower;
+    private Animator anim;
+    [SerializeField] private SpriteRenderer sprite;
 
     public bool IsHidden { get; private set; }
 
@@ -19,13 +21,14 @@ public class HideableCharacters : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         follower = GetComponent<PlayerFollower>();
+        anim = GetComponent<Animator>();
     }
 
     public void Hide(Transform hidingSpot)
     {
         IsHidden = true;
 
-        //transform.position = hidingSpot.position;
+        transform.position = hidingSpot.position;
 
         if (rb != null)
         {
@@ -35,6 +38,10 @@ public class HideableCharacters : MonoBehaviour
 
         if (follower != null)
             follower.enabled = false;
+
+        if(anim != null)
+            anim.enabled = false;
+        sprite.color = Color.grey;
     }
 
     public void UnHide()
@@ -46,5 +53,9 @@ public class HideableCharacters : MonoBehaviour
 
         if (follower != null)
             follower.enabled = true;
+       
+        if (anim != null)
+            anim.enabled = true;
+        sprite.color = Color.white;
     }
 }

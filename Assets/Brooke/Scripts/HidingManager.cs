@@ -18,7 +18,8 @@ public class HidingManager : MonoBehaviour
         if (next == null)
             return;
 
-        next.Hide(spot.transform);
+        //spot.GoToHiding();
+        next.Hide(spot.hideLocation);
     }
 
     //returning the characters in order backwards so 3->1
