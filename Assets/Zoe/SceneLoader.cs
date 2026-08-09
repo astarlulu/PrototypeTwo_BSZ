@@ -1,16 +1,25 @@
+using System.Collections;
+using Unity.Collections;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] public string sceneName;
+    public void LoadSceneByName(string sceneName)
     {
-        
-    }
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.Log("Scene empty");
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
+
