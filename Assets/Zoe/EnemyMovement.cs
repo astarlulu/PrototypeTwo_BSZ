@@ -50,15 +50,15 @@ public class EnemyMovement : MonoBehaviour
 
     public void EnemyMove()
     {
-        Vector2 point = currentPoint.position - transform.position; 
+        Vector2 point = currentPoint.position - transform.position;
 
-        if (currentPoint == PointB.transform) 
+        if (currentPoint.position.x > transform.position.x) // If the target is to the RIGHT of the enemy
         {
-            rb.linearVelocity = new Vector2(speed, 0); //move to point b 
+            rb.linearVelocity = new Vector2(speed, 0); // Move right
         }
-        else
+        else // If the target is to the LEFT of the enemy
         {
-            rb.linearVelocity = new Vector2(-speed, 0); //move to point a 
+            rb.linearVelocity = new Vector2(-speed, 0); // Move left
         }
 
         if (Vector2.Distance(transform.position, currentPoint.position) < 4f && currentPoint == PointB.transform) 
