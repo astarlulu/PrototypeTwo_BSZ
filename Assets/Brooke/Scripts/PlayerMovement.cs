@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         //jumping
         if (Input.GetKeyDown(KeyCode.Space)) //is grounded so that player can only jump again once theyve hit the ground
         {
-            Debug.Log("Jump");
+            // Debug.Log("Jump");
             Jump();
         }
 

@@ -42,6 +42,7 @@ public class HideableCharacters : MonoBehaviour
         if(anim != null)
             anim.enabled = false;
         sprite.color = Color.grey;
+        sprite.sortingOrder = -9;
     }
 
     public void UnHide()
@@ -57,5 +58,6 @@ public class HideableCharacters : MonoBehaviour
         if (anim != null)
             anim.enabled = true;
         sprite.color = Color.white;
+        sprite.sortingOrder = 10;
     }
 }
