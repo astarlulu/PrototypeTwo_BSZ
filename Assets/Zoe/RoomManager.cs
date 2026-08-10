@@ -18,6 +18,8 @@ public class RoomManager : MonoBehaviour
 
     private int currentRoom = 0; //track which room player in
 
+    public bool enemyStarted; // Sienna - tracking enemy actions
+
     void Start() //turns off all collider + enemy to start clean
     {
         for (int i = 0; i < rooms.Length; i++) 
@@ -64,6 +66,8 @@ public class RoomManager : MonoBehaviour
         Debug.Log("Timer: " + roomTime);
     }
 
+
+
     public void TimerFinished()
     {
         Collider2D blocker = rooms[currentRoom].roomBlocker.GetComponentInChildren<Collider2D>();
@@ -74,10 +78,13 @@ public class RoomManager : MonoBehaviour
         }
 
         Debug.Log("Timer finished for Room " + (currentRoom + 1));
+
+        enemyStarted = true;
     }
 
     public void EnemyFinished()
     {
+
         Debug.Log("Enemy finished Room " + (currentRoom + 1));
 
         rooms[currentRoom].enemy.SetActive(false); //enemy despawn
@@ -92,5 +99,9 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log("ALL ROOMS COMPLETED!");
         }
+
+        enemyStarted = false;
     }
+
+
 }

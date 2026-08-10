@@ -21,7 +21,7 @@ public class HideableCharacters : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         follower = GetComponent<PlayerFollower>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void Hide(Transform hidingSpot)
@@ -39,6 +39,8 @@ public class HideableCharacters : MonoBehaviour
         if (follower != null)
             follower.enabled = false;
 
+
+        // stop animator and change colour
         if(anim != null)
             anim.enabled = false;
         sprite.color = Color.grey;
@@ -54,10 +56,24 @@ public class HideableCharacters : MonoBehaviour
 
         if (follower != null)
             follower.enabled = true;
-       
+
+        // resume animator and change colour
         if (anim != null)
             anim.enabled = true;
         sprite.color = Color.white;
         sprite.sortingOrder = 10;
     }
+
+
+    //public bool HasTrigger(Animator anim, string triggerName)
+    //{
+    //    foreach (AnimatorControllerParameter param in anim.parameters)
+    //    {
+    //        if (param.type == AnimatorControllerParameterType.Trigger && param.name == triggerName)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 }
